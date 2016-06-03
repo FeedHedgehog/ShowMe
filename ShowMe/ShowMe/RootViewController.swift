@@ -12,20 +12,20 @@ import UIKit
 let APIKEY = ""
 
 /****************************
-1.构造MAMapView对象；
+ 1.构造MAMapView对象；
 
-2.设置代理；
+ 2.设置代理；
 
-3.将MAMapView添加到Subview中。
+ 3.将MAMapView添加到Subview中。
 *******************************/
-class RootViewController: UIViewController,MAMapViewDelegate {
+class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate {
 
-    var _mapView:MAMapView?
+    var _mapView:MAMapView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        viewSetup()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,15 +33,20 @@ class RootViewController: UIViewController,MAMapViewDelegate {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    //界面
+    func viewSetup(){
+        initMapView()
     }
-    */
+    
+    func initMapView(){
+        _mapView = MAMapView(frame: CGRectMake(0, 65, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-65))
+        _mapView.showsUserLocation = true
+        _mapView.setUserTrackingMode(MAUserTrackingMode.Follow, animated: true)
+        _mapView.showsCompass = false
+        //_mapView.showsScale = true
+        _mapView.scaleOrigin = CGPointMake(100, _mapView.frame.size.height-20)
+        _mapView.delegate = self
+        self.view.addSubview(_mapView)
+    }
 
 }
