@@ -4,4 +4,5 @@
 #import <MAMapKit/MAMapKit.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapSearchKit/AMapSearchKit.h>
-#import <AMapSearchKit/AMapSearchAPI.h>
+//#import <AMapSearchKit/AMapSearchAPI.h>
+#import <AMapFoundationKit/AMapServices.h>
