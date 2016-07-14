@@ -52,6 +52,8 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         }
     }
     
+    
+    
     //初始化地图页面
     func initMapView(){
         

@@ -14,6 +14,12 @@
 		AF095E0E1D01229A00205414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF095E0D1D01229A00205414 /* Assets.xcassets */; };
 		AF095E111D01229A00205414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF095E0F1D01229A00205414 /* LaunchScreen.storyboard */; };
 		AF095E1B1D0123CB00205414 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF095E1A1D0123CB00205414 /* RootViewController.swift */; };
+		AFF2156B1D33F04100D96BF9 /* aeroplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215651D33F04100D96BF9 /* aeroplane@2x.png */; };
+		AFF2156C1D33F04100D96BF9 /* icon_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215661D33F04100D96BF9 /* icon_list@2x.png */; };
+		AFF2156D1D33F04100D96BF9 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215671D33F04100D96BF9 /* icon_play@2x.png */; };
+		AFF2156E1D33F04100D96BF9 /* icon_stop@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215681D33F04100D96BF9 /* icon_stop@2x.png */; };
+		AFF2156F1D33F04100D96BF9 /* location_no@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215691D33F04100D96BF9 /* location_no@2x.png */; };
+		AFF215701D33F04100D96BF9 /* location_yes@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF2156A1D33F04100D96BF9 /* location_yes@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -28,6 +34,12 @@
 		AF095E121D01229A00205414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF095E1A1D0123CB00205414 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
 		AF8E55371D012E7900D81131 /* ShowMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShowMe-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
+		AFF215651D33F04100D96BF9 /* aeroplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aeroplane@2x.png"; sourceTree = "<group>"; };
+		AFF215661D33F04100D96BF9 /* icon_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list@2x.png"; sourceTree = "<group>"; };
+		AFF215671D33F04100D96BF9 /* icon_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_play@2x.png"; sourceTree = "<group>"; };
+		AFF215681D33F04100D96BF9 /* icon_stop@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_stop@2x.png"; sourceTree = "<group>"; };
+		AFF215691D33F04100D96BF9 /* location_no@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_no@2x.png"; sourceTree = "<group>"; };
+		AFF2156A1D33F04100D96BF9 /* location_yes@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "location_yes@2x.png"; sourceTree = "<group>"; };
 		E601DAF72581FC0844C18087 /* Pods-ShowMe.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowMe.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowMe/Pods-ShowMe.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -72,6 +84,7 @@
 		AF095E021D01229A00205414 /* ShowMe */ = {
 			isa = PBXGroup;
 			children = (
+				AFF215711D33F04800D96BF9 /* Resources */,
 				AF8E55371D012E7900D81131 /* ShowMe-Bridging-Header.h */,
 				AF095E031D01229A00205414 /* AppDelegate.swift */,
 				AF095E071D01229A00205414 /* Main.storyboard */,
@@ -82,6 +95,19 @@
 				AF095E1A1D0123CB00205414 /* RootViewController.swift */,
 			);
 			path = ShowMe;
+			sourceTree = "<group>";
+		};
+		AFF215711D33F04800D96BF9 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				AFF215651D33F04100D96BF9 /* aeroplane@2x.png */,
+				AFF215661D33F04100D96BF9 /* icon_list@2x.png */,
+				AFF215671D33F04100D96BF9 /* icon_play@2x.png */,
+				AFF215681D33F04100D96BF9 /* icon_stop@2x.png */,
+				AFF215691D33F04100D96BF9 /* location_no@2x.png */,
+				AFF2156A1D33F04100D96BF9 /* location_yes@2x.png */,
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 		FACA15BEE3B8DB00BB8C10DC /* Pods */ = {
@@ -128,6 +154,7 @@
 				TargetAttributes = {
 					AF095DFF1D01229A00205414 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = PT77KVD7C8;
 					};
 				};
 			};
@@ -154,9 +181,15 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFF2156B1D33F04100D96BF9 /* aeroplane@2x.png in Resources */,
 				AF095E111D01229A00205414 /* LaunchScreen.storyboard in Resources */,
+				AFF2156C1D33F04100D96BF9 /* icon_list@2x.png in Resources */,
 				AF095E0E1D01229A00205414 /* Assets.xcassets in Resources */,
+				AFF2156F1D33F04100D96BF9 /* location_no@2x.png in Resources */,
 				AF095E091D01229A00205414 /* Main.storyboard in Resources */,
+				AFF2156E1D33F04100D96BF9 /* icon_stop@2x.png in Resources */,
+				AFF2156D1D33F04100D96BF9 /* icon_play@2x.png in Resources */,
+				AFF215701D33F04100D96BF9 /* location_yes@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,10 +365,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShowMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.huntjobs.ShowMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShowMe-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
@@ -347,10 +383,13 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = ShowMe/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = cn.huntjobs.ShowMe;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "ShowMe-Bridging-Header.h";
 			};
 			name = Release;
