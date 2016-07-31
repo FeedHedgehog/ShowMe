@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 //高德地图的Appkey
 let APIKEY = "cd6b7e0d16e8dc351818bd3446dd98a7"
@@ -30,7 +31,45 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        AMapServices.sharedServices().apiKey = APIKEY
+        //测试Alamofire
+        Alamofire.request(.GET, "https://httpbin.org/get")
+            .response{
+                request,response,data,error in
+                print(request)
+                print(response)
+                print(data)
+                print(data.dynamicType)
+                print(error)
+                print(error.dynamicType)
+        }
+            .responseString(completionHandler: {
+                response in
+                print("String ==========")
+                switch response.result {
+                case .Success(let str):
+                    print("\(str.dynamicType)")
+                    print("\(str)")
+                case .Failure(let error):
+                    print("\(error)")
+                }
+                })
+        
+            .responseJSON(completionHandler: {
+                response in
+                print("JSON =============")
+                switch response.result {
+                case .Success(let json):
+                    let dict = json as! Dictionary<String,AnyObject>
+                    let origin = dict["origin"] as! String
+                    let headers = dict["headers"] as! Dictionary<String,String>
+                    print("origin:\(origin)")
+                    let ua = headers["User-Agent"]
+                    print("UA:\(ua)")
+                case .Failure(let error):
+                    print("\(error)")
+                }
+            })
+                AMapServices.sharedServices().apiKey = APIKEY
         viewSetup()
     }
 
@@ -134,8 +173,8 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     
     func mapView(mapView: MAMapView!, didUpdateUserLocation userLocation: MAUserLocation!, updatingLocation: Bool) {
         //取出当前位置的坐标
-        print("latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-        centerCoordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+//        print("latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+//        centerCoordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         //mapView.showsUserLocation = false;
     }
 
