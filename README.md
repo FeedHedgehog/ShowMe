@@ -12,11 +12,12 @@ $ git clone https://github.com/FeedHedgehog/ShowMe.git
 2) Install pods
 
 $ cd ShowMe
+
 $ pod install
 
 3) Open the workspace in Xcode
 
-$ open "SwiftWeather.xcworkspace"
+$ open "ShowMe.xcworkspace"
 
 5) Compile and run the app in your simulator
 
@@ -24,5 +25,7 @@ $ open "SwiftWeather.xcworkspace"
 
 #Requirements
 Xcode 7
+
 iOS 9
-If you have interest in it,just to send me a email to 1424870395@qq.com.Waiting for your letters!
+
+If you have interest in it,just to send me a email to 1424870395@qq.com. Waiting for your letters!
