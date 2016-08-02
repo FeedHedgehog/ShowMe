@@ -8,6 +8,7 @@ We have investigated Swift 3. We need to wait for the third party libraries supp
 1) Clone the repository
 
 $ git clone https://github.com/FeedHedgehog/ShowMe.git
+
 2) Install pods
 
 $ cd ShowMe
