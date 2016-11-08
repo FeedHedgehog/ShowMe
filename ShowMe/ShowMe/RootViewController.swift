@@ -32,7 +32,7 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//                AMapServices.sharedServices().apiKey = APIKEY
+//                MAMapServices.sharedServices().apiKey = APIKEY
         viewSetup()
     }
 
@@ -75,9 +75,9 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         mapView!.delegate = self
         
         
-//        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
-//        let macircle = MACircle.init(centerCoordinate: coordinate, radius: 200.0)
-//        mapView!.addAnnotation(macircle)
+        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
+        let macircle = MACircle.init(center: coordinate, radius: 200.0)
+        mapView!.addAnnotation(macircle)
         
         self.view.addSubview(mapView!)
         
@@ -135,9 +135,9 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     }
     
     func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!, updatingLocation: Bool) {
-        //取出当前位置的坐标
-//        print("latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-//        centerCoordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+//        取出当前位置的坐标
+        print("latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
+        centerCoordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
         //mapView.showsUserLocation = false;
     }
 
