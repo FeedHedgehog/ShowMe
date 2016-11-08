@@ -31,45 +31,8 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        //测试Alamofire
-        Alamofire.request(.GET, "https://httpbin.org/get")
-            .response{
-                request,response,data,error in
-                print(request)
-                print(response)
-                print(data)
-                print(data.dynamicType)
-                print(error)
-                print(error.dynamicType)
-        }
-            .responseString(completionHandler: {
-                response in
-                print("String ==========")
-                switch response.result {
-                case .Success(let str):
-                    print("\(str.dynamicType)")
-                    print("\(str)")
-                case .Failure(let error):
-                    print("\(error)")
-                }
-                })
         
-            .responseJSON(completionHandler: {
-                response in
-                print("JSON =============")
-                switch response.result {
-                case .Success(let json):
-                    let dict = json as! Dictionary<String,AnyObject>
-                    let origin = dict["origin"] as! String
-                    let headers = dict["headers"] as! Dictionary<String,String>
-                    print("origin:\(origin)")
-                    let ua = headers["User-Agent"]
-                    print("UA:\(ua)")
-                case .Failure(let error):
-                    print("\(error)")
-                }
-            })
-                AMapServices.sharedServices().apiKey = APIKEY
+//                AMapServices.sharedServices().apiKey = APIKEY
         viewSetup()
     }
 
@@ -84,9 +47,9 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         initToolBar()
         
         if centerCoordinate != nil {
-            mapView!.setCenterCoordinate(centerCoordinate, animated: true)
+            mapView!.setCenter(centerCoordinate, animated: true)
             
-            let macircle = MACircle.init(centerCoordinate: centerCoordinate, radius: 200.0)
+            let macircle = MACircle.init(center: centerCoordinate, radius: 200.0)
             mapView!.addAnnotation(macircle)
         }
     }
@@ -96,12 +59,12 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     //初始化地图页面
     func initMapView(){
         
-        mapView = MAMapView(frame: CGRectMake(0, 65, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-65))
-        mapView!.showsUserLocation = true
-        mapView!.setUserTrackingMode(MAUserTrackingMode.Follow, animated: true)
+        mapView = MAMapView(frame: CGRect(x: 0, y: 65, width: (self.view.bounds).width, height: (self.view.bounds).height-65))
+        mapView!.isShowsUserLocation = true
+        mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
         mapView!.showsCompass = false
         //mapView!.showsScale = true
-        mapView!.scaleOrigin = CGPointMake(100, mapView!.frame.size.height-20)
+        mapView!.scaleOrigin = CGPoint(x: 100, y: mapView!.frame.size.height-20)
         mapView!.delegate = self
         self.view.addSubview(mapView!)
     }
@@ -123,15 +86,15 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         let scaleX = mapView?.scaleOrigin.x
         
         //设置指南针和比例尺的位置
-        mapView?.compassOrigin = CGPointMake(compassX!, 21)
+        mapView?.compassOrigin = CGPoint(x: compassX!, y: 21)
         
-        mapView?.scaleOrigin = CGPointMake(scaleX!, 21)
+        mapView?.scaleOrigin = CGPoint(x: scaleX!, y: 21)
         
         // 开启定位
-        mapView!.showsUserLocation = true
+        mapView!.isShowsUserLocation = true
         
         // 设置跟随定位模式，将定位点设置成地图中心点
-    mapView!.setUserTrackingMode(MAUserTrackingMode.Follow, animated: true)
+    mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
         mapView!.distanceFilter = 10.0
         mapView!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
         mapView!.setZoomLevel(10.1, animated: true)
@@ -140,38 +103,38 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     
     func initToolBar() {
         
-        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.Bordered, target: self, action: "actionHistory")
+        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.bordered, target: self, action: "actionHistory")
         
         navigationItem.rightBarButtonItem = rightButtonItem
         
-        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.Bordered, target: self, action: "actionRecordAndStop")
+        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.bordered, target: self, action: "actionRecordAndStop")
         
         navigationItem.leftBarButtonItem = leftButtonItem
         
         imageShare = UIImage(named: "location_share@2x.png")
         
-        locationButton = UIButton(frame: CGRectMake(CGRectGetWidth(view.bounds) - 80, CGRectGetHeight(view.bounds) - 120, 60, 60))
+        locationButton = UIButton(frame: CGRect(x: view.bounds.width - 80, y: view.bounds.height - 120, width: 60, height: 60))
 //        locationButton!.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin
-        locationButton!.backgroundColor = UIColor.whiteColor()
+        locationButton!.backgroundColor = UIColor.white
         locationButton!.layer.cornerRadius = 5
-        locationButton!.layer.shadowColor = UIColor.blackColor().CGColor
-        locationButton!.layer.shadowOffset = CGSizeMake(5, 5)
+        locationButton!.layer.shadowColor = UIColor.black.cgColor
+        locationButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
         locationButton!.layer.shadowRadius = 5
         //locationButton!.tag=mapView!.userLocation.coordinate
-        locationButton!.addTarget(self, action: "addPoint:", forControlEvents: UIControlEvents.TouchUpInside)
-        locationButton!.setImage(imageShare, forState: UIControlState.Normal)
+        locationButton!.addTarget(self, action: #selector(RootViewController.addPoint(_:)), for: UIControlEvents.touchUpInside)
+        locationButton!.setImage(imageShare, for: UIControlState())
         
         view.addSubview(locationButton!)
         
     }
     
-    func addPoint(sender: UIButton) {
+    func addPoint(_ sender: UIButton) {
 //        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
         
         
     }
     
-    func mapView(mapView: MAMapView!, didUpdateUserLocation userLocation: MAUserLocation!, updatingLocation: Bool) {
+    func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!, updatingLocation: Bool) {
         //取出当前位置的坐标
 //        print("latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
 //        centerCoordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
