@@ -15,7 +15,15 @@
 #import <AMapFoundationKit/AMapUtility.h>
 
 #import <AMapSearchKit/AMapSearchKit.h>
-#import <MAMapKit/MAMapKit.h>
 
+
+
+#import <MAMapKit/MAAnnotation.h>
+#import <MAMapKit/MAAnnotationView.h>
+#import <MAMapKit/MAMapKit.h>
+#import <MAMapKit/MAPinAnnotationView.h>
+#import <MAMapKit/MAPointAnnotation.h>
+#import <MAMapKit/MAMapView.h>
+#import <MAMapKit/MAUserLocation.h>
 
 #endif

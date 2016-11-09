@@ -157,6 +157,11 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = PT77KVD7C8;
 						LastSwiftMigration = 0810;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};

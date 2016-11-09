@@ -23,6 +23,7 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
 
     var mapView:MAMapView!
     var search: AMapSearchAPI!
+    var pointAnnotation:MAPointAnnotation!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,9 +38,21 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        mapView.isShowTraffic=true
         mapView.isShowsUserLocation=true
         mapView.userTrackingMode=MAUserTrackingMode.follow
+        mapView.showsCompass=false
+        mapView.pausesLocationUpdatesAutomatically=false
+        mapView.allowsBackgroundLocationUpdates=true
+        
+        pointAnnotation = MAPointAnnotation()
+        pointAnnotation.coordinate = CLLocationCoordinate2DMake(mapView.centerCoordinate.latitude, mapView.centerCoordinate.longitude)
+        pointAnnotation.title = "xx项目"
+        pointAnnotation.subtitle = "此项目知道啦好打理好爱上的离婚"
+        
+        mapView.addAnnotation(pointAnnotation)
     }
+    
     
     //界面
     func viewSetup(){
@@ -54,14 +67,12 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     //初始化地图页面
     func initMapView(){
         mapView = MAMapView(frame: self.view.bounds)
-        mapView?.isShowsUserLocation=true
-        mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
         mapView!.delegate = self
         
         
-        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
-        let macircle = MACircle.init(center: coordinate, radius: 200.0)
-        mapView!.addAnnotation(macircle)
+//        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
+//        let macircle = MACircle.init(center: coordinate, radius: 200.0)
+//        mapView!.addAnnotation(macircle)
         
         self.view.addSubview(mapView!)
         
@@ -73,15 +84,10 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         mapView?.compassOrigin = CGPoint(x: compassX!, y: 21)
         
         mapView?.scaleOrigin = CGPoint(x: scaleX!, y: 21)
-        
-        // 开启定位
-        mapView!.isShowsUserLocation = true
-        
-        // 设置跟随定位模式，将定位点设置成地图中心点
-    mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
         mapView!.distanceFilter = 10.0
         mapView!.desiredAccuracy = kCLLocationAccuracyBestForNavigation
-        mapView!.setZoomLevel(10.1, animated: true)
+        mapView!.setZoomLevel(17.5, animated: true)
+        mapView.setCenter(mapView.centerCoordinate, animated: true)
     }
     
     
@@ -124,6 +130,26 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         search.delegate=self
     }
     
+//    func mapView(_ mapView: MAMapView!, viewFor annotation: MAAnnotation!) -> MAAnnotationView! {
+//        ////        if annotation.isKind(of: MAPointAnnotation) {
+//        //            let pointReuseIndentifier = "pointReuseIndentifier"
+//        //            var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: pointReuseIndentifier) as! MAPinAnnotationView
+//        //            if(annotationView == nil){
+//        //                annotationView = MAPinAnnotationView.init(annotation: annotation, reuseIdentifier: pointReuseIndentifier)
+//        //            }
+//        //            annotationView.canShowCallout=true
+//        //            annotationView.animatesDrop=true
+//        //            annotationView.isDraggable=true
+//        //            annotationView.pinColor=MAPinAnnotationColor.purple
+//        //            return annotationView
+//        ////        }
+//    }
+    
+    func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!) {
+        print("latitude :\(userLocation.coordinate.latitude), longtitude: \(userLocation.coordinate.longitude)")
+
+    }
+    
     // 发起逆地理编码请求
     func searchReGeocodeWithCoordinate(coordinate: CLLocationCoordinate2D!) {
         let regeo: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
@@ -158,4 +184,5 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         }
     }
 
+    
 }
