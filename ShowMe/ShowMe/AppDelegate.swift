@@ -9,6 +9,8 @@
 import UIKit
 import CoreData
 
+//高德地图的Appkey
+let APIKEY = "cd6b7e0d16e8dc351818bd3446dd98a7"
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
@@ -18,6 +20,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        
+        AMapServices.shared().apiKey = APIKEY
         
         return true
     }

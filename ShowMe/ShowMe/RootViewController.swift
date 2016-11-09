@@ -10,7 +10,7 @@ import UIKit
 import Alamofire
 
 //高德地图的Appkey
-let APIKEY = "cd6b7e0d16e8dc351818bd3446dd98a7"
+//let APIKEY = "cd6b7e0d16e8dc351818bd3446dd98a7"
 
 /****************************
  1.构造MAMapView对象；
@@ -21,18 +21,12 @@ let APIKEY = "cd6b7e0d16e8dc351818bd3446dd98a7"
 *******************************/
 class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate {
 
-    var mapView:MAMapView?
-    var centerCoordinate:CLLocationCoordinate2D!
-    var isRecording: Bool = false
-    var locationButton: UIButton?
-    var searchButton: UIButton?
-    var imageShare: UIImage?
-    var search: AMapSearchAPI?
+    var mapView:MAMapView!
+    var search: AMapSearchAPI!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//                MAMapServices.sharedServices().apiKey = APIKEY
         viewSetup()
     }
 
@@ -41,37 +35,27 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        mapView.isShowsUserLocation=true
+        mapView.userTrackingMode=MAUserTrackingMode.follow
+    }
+    
     //界面
     func viewSetup(){
-        initMapView1()
-        initToolBar()
+        initMapView()
+//        initToolBar()
+        initSearch()
         
-        if centerCoordinate != nil {
-            mapView!.setCenter(centerCoordinate, animated: true)
-            
-            let macircle = MACircle.init(center: centerCoordinate, radius: 200.0)
-            mapView!.addAnnotation(macircle)
-        }
     }
     
     
     
     //初始化地图页面
     func initMapView(){
-        
-        mapView = MAMapView(frame: CGRect(x: 0, y: 65, width: (self.view.bounds).width, height: (self.view.bounds).height-65))
-        mapView!.isShowsUserLocation = true
-        mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
-        mapView!.showsCompass = false
-        //mapView!.showsScale = true
-        mapView!.scaleOrigin = CGPoint(x: 100, y: mapView!.frame.size.height-20)
-        mapView!.delegate = self
-        self.view.addSubview(mapView!)
-    }
-    
-    func initMapView1(){
         mapView = MAMapView(frame: self.view.bounds)
-        
+        mapView?.isShowsUserLocation=true
+        mapView!.setUserTrackingMode(MAUserTrackingMode.follow, animated: true)
         mapView!.delegate = self
         
         
@@ -101,44 +85,77 @@ class RootViewController: UIViewController,MAMapViewDelegate,AMapSearchDelegate 
     }
     
     
-    func initToolBar() {
-        
-        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.bordered, target: self, action: "actionHistory")
-        
-        navigationItem.rightBarButtonItem = rightButtonItem
-        
-        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.bordered, target: self, action: "actionRecordAndStop")
-        
-        navigationItem.leftBarButtonItem = leftButtonItem
-        
-        imageShare = UIImage(named: "location_share@2x.png")
-        
-        locationButton = UIButton(frame: CGRect(x: view.bounds.width - 80, y: view.bounds.height - 120, width: 60, height: 60))
-//        locationButton!.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin
-        locationButton!.backgroundColor = UIColor.white
-        locationButton!.layer.cornerRadius = 5
-        locationButton!.layer.shadowColor = UIColor.black.cgColor
-        locationButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
-        locationButton!.layer.shadowRadius = 5
-        //locationButton!.tag=mapView!.userLocation.coordinate
-        locationButton!.addTarget(self, action: #selector(RootViewController.addPoint(_:)), for: UIControlEvents.touchUpInside)
-        locationButton!.setImage(imageShare, for: UIControlState())
-        
-        view.addSubview(locationButton!)
-        
+//    func initToolBar() {
+//        
+//        let rightButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_list.png"), style: UIBarButtonItemStyle.bordered, target: self, action: "actionHistory")
+//        
+//        navigationItem.rightBarButtonItem = rightButtonItem
+//        
+//        let leftButtonItem: UIBarButtonItem = UIBarButtonItem(image: UIImage(named: "icon_play.png"), style: UIBarButtonItemStyle.bordered, target: self, action: "actionRecordAndStop")
+//        
+//        navigationItem.leftBarButtonItem = leftButtonItem
+//        
+//        imageShare = UIImage(named: "location_share@2x.png")
+//        
+//        locationButton = UIButton(frame: CGRect(x: view.bounds.width - 80, y: view.bounds.height - 120, width: 60, height: 60))
+////        locationButton!.autoresizingMask = UIViewAutoresizing.FlexibleRightMargin | UIViewAutoresizing.FlexibleTopMargin
+//        locationButton!.backgroundColor = UIColor.white
+//        locationButton!.layer.cornerRadius = 5
+//        locationButton!.layer.shadowColor = UIColor.black.cgColor
+//        locationButton!.layer.shadowOffset = CGSize(width: 5, height: 5)
+//        locationButton!.layer.shadowRadius = 5
+//        //locationButton!.tag=mapView!.userLocation.coordinate
+//        locationButton!.addTarget(self, action: #selector(RootViewController.addPoint(_:)), for: UIControlEvents.touchUpInside)
+//        locationButton!.setImage(imageShare, for: UIControlState())
+//        
+//        view.addSubview(locationButton!)
+//        
+//    }
+    
+//    func addPoint(_ sender: UIButton) {
+////        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
+//        
+//        
+//    }
+ 
+    
+    func initSearch(){
+        search=AMapSearchAPI()
+        search.delegate=self
     }
     
-    func addPoint(_ sender: UIButton) {
-//        let coordinate:CLLocationCoordinate2D = CLLocationCoordinate2D.init(latitude: 40.078537, longitude: 116.5871)
-        
-        
+    // 发起逆地理编码请求
+    func searchReGeocodeWithCoordinate(coordinate: CLLocationCoordinate2D!) {
+        let regeo: AMapReGeocodeSearchRequest = AMapReGeocodeSearchRequest()
+        regeo.location = AMapGeoPoint.location(withLatitude: CGFloat(coordinate.latitude), longitude: CGFloat(coordinate.longitude))
+        self.search!.aMapReGoecodeSearch(regeo)
     }
     
-    func mapView(_ mapView: MAMapView!, didUpdate userLocation: MAUserLocation!, updatingLocation: Bool) {
-//        取出当前位置的坐标
-        print("latitude : %f,longitude: %f",userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-        centerCoordinate = CLLocationCoordinate2DMake(userLocation.coordinate.latitude,userLocation.coordinate.longitude);
-        //mapView.showsUserLocation = false;
+    //MARK:- MAMapViewDelegate
+    func mapView(_ mapView: MAMapView!, didLongPressedAt coordinate: CLLocationCoordinate2D) {
+        // 长按地图触发回调，在长按点进行逆地理编码查询
+        searchReGeocodeWithCoordinate(coordinate: coordinate)
+    }
+    
+    //MARK:- AMapSearchDelegate
+    func aMapSearchRequest(_ request: Any!, didFailWithError error: Error!) {
+        print("request :\(request), error: \(error)")
+    }
+    
+    // 逆地理查询回调
+    func onReGeocodeSearchDone(_ request: AMapReGeocodeSearchRequest, response: AMapReGeocodeSearchResponse) {
+        
+        print("response :\(response.formattedDescription())")
+        
+        if (response.regeocode != nil) {
+            let coordinate = CLLocationCoordinate2DMake(Double(request.location.latitude), Double(request.location.longitude))
+            
+            let annotation = MAPointAnnotation()
+            annotation.coordinate = coordinate
+            annotation.title = response.regeocode.formattedAddress
+            annotation.subtitle = response.regeocode.addressComponent.province
+            mapView!.addAnnotation(annotation)
+        }
     }
 
 }
