@@ -14,6 +14,9 @@
 		AF095E0E1D01229A00205414 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF095E0D1D01229A00205414 /* Assets.xcassets */; };
 		AF095E111D01229A00205414 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF095E0F1D01229A00205414 /* LaunchScreen.storyboard */; };
 		AF095E1B1D0123CB00205414 /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF095E1A1D0123CB00205414 /* RootViewController.swift */; };
+		AF6737A81DD4A45900FA2680 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF6737A71DD4A45900FA2680 /* Images.xcassets */; };
+		AF6737AD1DD4A74300FA2680 /* NearByViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6737AC1DD4A74300FA2680 /* NearByViewController.swift */; };
+		AF6737AF1DD4AE5300FA2680 /* WelcomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF6737AE1DD4AE5300FA2680 /* WelcomeViewController.swift */; };
 		AFF2156B1D33F04100D96BF9 /* aeroplane@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215651D33F04100D96BF9 /* aeroplane@2x.png */; };
 		AFF2156C1D33F04100D96BF9 /* icon_list@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215661D33F04100D96BF9 /* icon_list@2x.png */; };
 		AFF2156D1D33F04100D96BF9 /* icon_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = AFF215671D33F04100D96BF9 /* icon_play@2x.png */; };
@@ -33,6 +36,9 @@
 		AF095E101D01229A00205414 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF095E121D01229A00205414 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		AF095E1A1D0123CB00205414 /* RootViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		AF6737A71DD4A45900FA2680 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		AF6737AC1DD4A74300FA2680 /* NearByViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearByViewController.swift; sourceTree = "<group>"; };
+		AF6737AE1DD4AE5300FA2680 /* WelcomeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeViewController.swift; sourceTree = "<group>"; };
 		AF8E55371D012E7900D81131 /* ShowMe-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "ShowMe-Bridging-Header.h"; sourceTree = SOURCE_ROOT; };
 		AFF215651D33F04100D96BF9 /* aeroplane@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "aeroplane@2x.png"; sourceTree = "<group>"; };
 		AFF215661D33F04100D96BF9 /* icon_list@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon_list@2x.png"; sourceTree = "<group>"; };
@@ -93,6 +99,7 @@
 		AF095E021D01229A00205414 /* ShowMe */ = {
 			isa = PBXGroup;
 			children = (
+				AF6737A91DD4A54700FA2680 /* View */,
 				AFF215711D33F04800D96BF9 /* Resources */,
 				AF8E55371D012E7900D81131 /* ShowMe-Bridging-Header.h */,
 				AF095E031D01229A00205414 /* AppDelegate.swift */,
@@ -102,8 +109,18 @@
 				AF095E121D01229A00205414 /* Info.plist */,
 				AF095E0A1D01229A00205414 /* ShowMe.xcdatamodeld */,
 				AF095E1A1D0123CB00205414 /* RootViewController.swift */,
+				AF6737A71DD4A45900FA2680 /* Images.xcassets */,
 			);
 			path = ShowMe;
+			sourceTree = "<group>";
+		};
+		AF6737A91DD4A54700FA2680 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				AF6737AC1DD4A74300FA2680 /* NearByViewController.swift */,
+				AF6737AE1DD4AE5300FA2680 /* WelcomeViewController.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 		AFF215711D33F04800D96BF9 /* Resources */ = {
@@ -189,6 +206,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				AFF2156B1D33F04100D96BF9 /* aeroplane@2x.png in Resources */,
+				AF6737A81DD4A45900FA2680 /* Images.xcassets in Resources */,
 				AF095E111D01229A00205414 /* LaunchScreen.storyboard in Resources */,
 				AFF2156C1D33F04100D96BF9 /* icon_list@2x.png in Resources */,
 				AF095E0E1D01229A00205414 /* Assets.xcassets in Resources */,
@@ -256,6 +274,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				AF095E041D01229A00205414 /* AppDelegate.swift in Sources */,
+				AF6737AF1DD4AE5300FA2680 /* WelcomeViewController.swift in Sources */,
+				AF6737AD1DD4A74300FA2680 /* NearByViewController.swift in Sources */,
 				AF095E0C1D01229A00205414 /* ShowMe.xcdatamodeld in Sources */,
 				AF095E1B1D0123CB00205414 /* RootViewController.swift in Sources */,
 			);
@@ -376,6 +396,8 @@
 			baseConfigurationReference = 33B6A066DA1C3BD0A8DE13AE /* Pods-ShowMe.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -398,6 +420,8 @@
 			baseConfigurationReference = E92D34A40A7AD9C22261353B /* Pods-ShowMe.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";

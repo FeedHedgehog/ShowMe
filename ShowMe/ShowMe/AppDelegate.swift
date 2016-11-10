@@ -15,13 +15,16 @@ let APIKEY = "cd6b7e0d16e8dc351818bd3446dd98a7"
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var viewController:RootViewController?
-
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
         AMapServices.shared().apiKey = APIKEY
+        
+        //设置欢迎页
+        let welcomeViewCtrl = WelcomeViewController()
+        self.window?.rootViewController = welcomeViewCtrl
+        self.window?.backgroundColor = UIColor.white
         
         return true
     }

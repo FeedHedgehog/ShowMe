@@ -4,9 +4,7 @@
 #ifndef _ShowMe_Bridging_Header_h
 #define _ShowMe_Bridging_Header_h
 
-//#import <MAMapKit/MAMapKit.h>
-//#import <AMapSearchKit/AMapSearchAPI.h>
-
+#import <AMapSearchKit/AMapSearchAPI.h>
 #import <AMapFoundationKit/AMapFoundationKit.h>
 #import <AMapFoundationKit/AMapFoundationVersion.h>
 #import <AMapFoundationKit/AMapServices.h>
