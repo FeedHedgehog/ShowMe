@@ -7,6 +7,9 @@
 //
 
 import UIKit
+import AVFoundation
+import MediaPlayer
+//import SnapKit
 
 class WelcomeViewController: UIViewController {
 

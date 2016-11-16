@@ -23,6 +23,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         //设置欢迎页
         let welcomeViewCtrl = WelcomeViewController()
+        let nearByCtrl = NearByViewController()
+        
         self.window?.rootViewController = welcomeViewCtrl
         self.window?.backgroundColor = UIColor.white
         
