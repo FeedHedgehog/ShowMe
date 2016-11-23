@@ -5,18 +5,21 @@ PODS:
   - AMapFoundation (1.3.1)
   - AMapSearch (4.2.0):
     - AMapFoundation (~> 1.0)
+  - SnapKit (3.0.2)
 
 DEPENDENCIES:
   - Alamofire (~> 4.0)
   - AMap2DMap (= 4.3.0)
   - AMapSearch (= 4.2.0)
+  - SnapKit (~> 3.0.2)
 
 SPEC CHECKSUMS:
   Alamofire: 7682d43245de14874acd142ec137b144aa1dd335
   AMap2DMap: f3f0fc5cdbf0242ff22da0c8605f24f8d7187b35
   AMapFoundation: 636834a27cd003084f56b4232f3031e6a44c7e7e
   AMapSearch: 788020fca7ed18819e8bc2bfca716a6775a05ada
+  SnapKit: 2e456761aa92d4d4067a7a5594c18769d451a8ad
 
-PODFILE CHECKSUM: 5454928dc9c72f89b9e85a922c04d260b7a0ad48
+PODFILE CHECKSUM: 2fed7d6be6e7fd02b30d72da84ee30045b49e1b6
 
 COCOAPODS: 1.2.0.beta.1
