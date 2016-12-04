@@ -82,9 +82,7 @@ class WelcomeViewController: UIViewController,UIScrollViewDelegate {
         
         for i in 0..<sportsArr.count {
             showLabel = UILabel()
-            showLabel.frame = CGRect.init(x: self.view.frame.width, y: self.view.bounds.height-150, width: self.view.bounds.width, height: 50)
-//            showLabel.frame = CGRect.init(x: self.view.bounds.width * i, y: self.view.bounds.height-150, width: self.view.bounds.width, height: 50)
-//            showLabel.frame = CGRectMake(CGFloat(Float(self.view.bounds.width)*Float(i)), self.view.bounds.height - 150,self.view.bounds.width, 50)
+            showLabel.frame = CGRect.init(x: self.view.frame.width * CGFloat(i), y: self.view.bounds.height-150, width: self.view.bounds.width, height: 50)
         
             showLabel.text = sportsArr[i]
             showLabel.font = UIFont.systemFont(ofSize: 20)
@@ -99,7 +97,7 @@ class WelcomeViewController: UIViewController,UIScrollViewDelegate {
         pageControl.currentPageIndicatorTintColor = UIColor.green
         pageControl.pageIndicatorTintColor = UIColor.white
         pageControl.isUserInteractionEnabled = true
-        pageControl.addTarget(self, action: "pageChaned", for: UIControlEvents.valueChanged)
+        pageControl.addTarget(self, action: Selector(("pageChaned")), for: UIControlEvents.valueChanged)
 //        pageControl.addTarget(self, action: #selector(pageChanged(_:)), forControlEvents: UIControlEvents.ValueChanged)
         view.addSubview(pageControl)
         pageControl.snp_makeConstraints { (make) in
@@ -177,12 +175,12 @@ class WelcomeViewController: UIViewController,UIScrollViewDelegate {
     }
     
     
-    func scrollViewWillBeginDragging(scrollView: UIScrollView) {
+    func scrollViewWillBeginDragging(_ scrollView: UIScrollView) {
         self.timer .invalidate()
         
     }
     
-    func scrollViewDidEndDecelerating(scrollView: UIScrollView) {
+    func scrollViewDidEndDecelerating(_ scrollView: UIScrollView) {
         
         let page = Int(self.scrollView.contentOffset.x / self.view.bounds.width)
         self.pageControl.currentPage = page
@@ -202,7 +200,7 @@ class WelcomeViewController: UIViewController,UIScrollViewDelegate {
     }
     
     
-    func scrollViewDidEndDragging(scrollView: UIScrollView, willDecelerate decelerate: Bool) {
+    func scrollViewDidEndDragging(_ scrollView: UIScrollView, willDecelerate decelerate: Bool) {
         
         self.setUpTimer()
     }
