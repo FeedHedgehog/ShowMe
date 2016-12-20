@@ -129,6 +129,7 @@ class WelcomeViewController: UIViewController,UIScrollViewDelegate {
         btnLogin.alpha = 0.4
         btnLogin.backgroundColor = UIColor.white
         btnLogin.setTitle("登录", for: .normal)
+        btnLogin.addTarget(self, action: #selector(Login), for: .touchUpInside)
         btnLogin.setTitleColor(UIColor.black, for: .normal)
         btnLogin.setTitleColor(UIColor.white, for: .highlighted)
         btnLogin.titleLabel?.font = UIFont.systemFont(ofSize: 20)
@@ -153,6 +154,12 @@ class WelcomeViewController: UIViewController,UIScrollViewDelegate {
         }
     }
     
+    func Login(_ button:UIButton){
+        let sb = UIStoryboard(name: "Main", bundle: nil)
+        let loginVc = sb.instantiateViewController(withIdentifier: "LoginVc") as UIViewController
+        self.present(loginVc, animated: true, completion:nil
+        )
+    }
     
     func setUpTimer(){
         timer = Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(timerChanged), userInfo: nil, repeats: true)

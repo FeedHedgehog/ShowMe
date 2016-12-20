@@ -26,5 +26,23 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
+        <!--Login View Controller-->
+        <scene sceneID="hMi-7G-Kc3">
+            <objects>
+                <viewController restorationIdentifier="RestoreLoginVc" storyboardIdentifier="LoginVc" id="PeJ-RN-N3p" customClass="LoginViewController" customModule="ShowMe" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="3n4-pG-Ypm"/>
+                        <viewControllerLayoutGuide type="bottom" id="b9R-eA-PJH"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="egL-oN-QQ7">
+                        <rect key="frame" x="0.0" y="0.0" width="768" height="1024"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ALu-23-Src" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="821" y="88"/>
+        </scene>
     </scenes>
 </document>
